@@ -1,23 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const projectController = require("../controllers/project");
+const subTaskController = require("../controllers/subTasks");
 const { authorizeAdmin, authenticate } = require("../middleware/authenticate");
 router.post(
-  "/project",
+  "/subTask",
   authenticate,
   authorizeAdmin,
-  projectController.createProject
+  subTaskController.createSubTask
 );
 router.get(
-  "/project",
+  "/subTask",
   authenticate,
   authorizeAdmin,
-  projectController.getAllProjcts
-);
-router.put(
-  "/project",
-  authenticate,
-  authorizeAdmin,
-  projectController.updateProject
+  subTaskController.getAllSubTasks
 );
 module.exports = router;
