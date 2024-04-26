@@ -8,11 +8,13 @@ datasource db {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
   password String
   name     String?
+  isAdmin  Boolean   @default(false)
   Person   Person[]
+  Project  Project[]
 }
 
 model Project {
@@ -22,6 +24,8 @@ model Project {
   startDate   DateTime?
   endDate     DateTime?
   status      String? // (e.g., "Active", "On Hold", "Completed")
+  user        User?     @relation(fields: [userId], references: [id]) // Person can belong to one team
+  userId      Int?
   sites       Site[] // Projects can have multiple sites
   teams       Team[] // Projects can have multiple teams
   tasks       Task[] // Projects can have multiple tasks
@@ -46,14 +50,15 @@ model Team {
 }
 
 model Person {
-  id Int @id @default(autoincrement())
-  name   String
-  role   String
-  team   Team?  @relation(fields: [teamId], references: [id]) // Person can belong to one team
-  teamId Int?
-  user   User?  @relation(fields: [userId], references: [id])
-  userId Int?
-  Task   Task[]
+  id        Int    @id @default(autoincrement())
+  role      String
+  team      Team?  @relation(fields: [teamId], references: [id]) // Person can belong to one team
+  teamId    Int?
+  user      User?  @relation(fields: [userId], references: [id])
+  userId    Int?
+  Task      Task[]
+  locationX Float
+  locationY Float
 }
 
 model Task {
