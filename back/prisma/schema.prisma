@@ -50,26 +50,37 @@ model Team {
 }
 
 model Person {
-  id        Int    @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   role      String
-  team      Team?  @relation(fields: [teamId], references: [id]) // Person can belong to one team
+  team      Team?     @relation(fields: [teamId], references: [id]) // Person can belong to one team
   teamId    Int?
-  user      User?  @relation(fields: [userId], references: [id])
+  user      User?     @relation(fields: [userId], references: [id])
   userId    Int?
-  Task      Task[]
   locationX Float
   locationY Float
+  subTask   subTask[]
 }
 
 model Task {
   id          Int       @id @default(autoincrement())
   name        String
   description String
+  type        String
   dueDate     DateTime?
-  assignedTo  Person?   @relation(fields: [personId], references: [id]) // Task can be assigned to one person
+  duration    Int       @default(0)
+  status      String    @default("created")
   project     Project   @relation(fields: [projectId], references: [id]) // Task belongs to one project
   site        Site?     @relation(fields: [siteId], references: [id]) // Task can be associated with one site
-  personId    Int?
   projectId   Int
   siteId      Int?
+  subTask     subTask[]
+}
+
+model subTask {
+  id         Int     @id @default(autoincrement())
+  assignedTo Person? @relation(fields: [personId], references: [id]) // Task can be assigned to one person
+  personId   Int?
+  subTaskFor Task?   @relation(fields: [taskId], references: [id])
+  taskId     Int
+  status     String  @default("created")
 }
