@@ -13,30 +13,15 @@ export default function WelcomeScreen({ navigation }) {
   return (
     <View style={style.screenContainer}>
       <View>
-        <Text
-          style={{
-            fontFamily: "GilroyBold",
-            textAlign: "center",
-            fontSize: 28,
-          }}
-        >
+        <Text style={style.heading}>
           Welcome to
         </Text>
-        <Text
-          style={{
-            fontFamily: "GilroyBold",
-            textAlign: "center",
-            fontSize: 48,
-            color: colors.primary[500],
-          }}
-        >
+        <Text style={style.appName}>
           FieldOps
         </Text>
       </View>
-      <Image source={require("../assets/ilustration.png")}></Image>
-      <Text
-        style={{ fontFamily: "GothamLight", textAlign: "center", fontSize: 16 }}
-      >
+      <Image source={require("../assets/ilustration.png")} />
+      <Text style={style.infoText}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam,
@@ -45,38 +30,22 @@ export default function WelcomeScreen({ navigation }) {
         onPress={() => navigation.navigate("Login screen")}
         style={style.button}
       >
-        <Text style={{ fontFamily: "GothamMedium", textAlign: "center" }}>
+        <Text style={style.buttonText}>
           Log in
         </Text>
       </Pressable>
       <View>
-      <Text
-        style={{ fontFamily: "GothamLight", textAlign: "center", fontSize: 10 }}
-      >
-        Any problem?
-      </Text>
-      <View style={{ display: "flex", flexDirection: "row" }}>
-        <Text
-          style={{
-            fontFamily: "GothamLight",
-            textAlign: "center",
-            fontSize: 10,
-          }}
-        >
-          contact us:
+        <Text style={style.problemText}>
+          Any problem?
         </Text>
-        <Text
-          style={{
-            fontFamily: "GothamLight",
-            textAlign: "center",
-            fontSize: 10,
-            color: colors.primary[500],
-          }}
-        >
-          {" "}
-          ourEmail@email.com
-        </Text>
-      </View>
+        <View style={style.contactContainer}>
+          <Text style={style.contactLabel}>
+            contact us:
+          </Text>
+          <Text style={style.contactEmail}>
+            ourEmail@email.com
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -94,13 +63,53 @@ const style = StyleSheet.create({
     padding: 20,
     paddingHorizontal: 30,
   },
+  heading: {
+    fontFamily: "GilroyBold",
+    textAlign: "center",
+    fontSize: 28,
+    marginHorizontal:20,
+  },
+  appName: {
+    fontFamily: "GilroyBold",
+    textAlign: "center",
+    fontSize: 48,
+    color: colors.primary[500],
+  },
+  infoText: {
+    fontFamily: "GothamLight",
+    textAlign: "center",
+    fontSize: 16,
+  },
   button: {
     backgroundColor: colors.secondary[500],
     width: 150,
     padding: 15,
-    borderBottomRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
+    borderRadius: 15,
+  },
+  buttonText: {
+    fontFamily: "GothamMedium",
+    textAlign: "center",
+  },
+  problemText: {
+    fontFamily: "GothamLight",
+    textAlign: "center",
+    fontSize: 10,
+  },
+  contactContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  contactLabel: {
+    fontFamily: "GothamLight",
+    textAlign: "center",
+    fontSize: 10,
+  },
+  contactEmail: {
+    fontFamily: "GothamLight",
+    textAlign: "center",
+    fontSize: 10,
+    color: colors.primary[500],
   },
 });

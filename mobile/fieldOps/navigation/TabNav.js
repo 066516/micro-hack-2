@@ -13,16 +13,21 @@ const Tab = createBottomTabNavigator();
 export default function TabNav() {
   return (
     <Tab.Navigator
-     // screenOptions={{ header: () => <View style={{ height: 20 }}></View> }}
-      screenOptions={{ headerShown:false }}
+      // screenOptions={{ header: () => <View style={{ height: 20 }}></View> }}
+      screenOptions={{ headerShown: false }}
       tabBar={(props) => <NavBar {...props} />}
     >
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ title: "Profile" }}
+      />
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{ title: "Home" }}
       />
-     <Tab.Screen
+      <Tab.Screen
         name="Tasks"
         component={Taskscreen}
         options={{ title: "Tasks" }}
@@ -33,11 +38,6 @@ export default function TabNav() {
         options={{ title: "Voice" }}
       />
       <Tab.Screen name="Map" component={MapScreen} options={{ title: "Map" }} />
-      <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{ title: "Profile" }}
-      />
     </Tab.Navigator>
   );
 }
