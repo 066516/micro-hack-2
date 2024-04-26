@@ -54,11 +54,48 @@ exports.getAllPersons = async (req, res) => {
         role: true,
         locationX: true,
         locationY: true,
+        team: true,
+        subTask: true,
       },
     });
 
     res.json(users);
   } catch (error) {
     res.status(500).send({ message: "Error retrieving user details." });
+  }
+};
+exports.assignedToTeam = async (req, res) => {
+  const { id, teamId } = req.body;
+
+  try {
+    const existingUser = await prisma.user.findUnique({ where: { id } });
+    if (!existingUser)
+      return res.status(404).send({ message: "person not found ." });
+
+    const person = await prisma.person.update({
+      where: {
+        id: 2,
+      },
+      data: {
+        team: {
+          // Specify the team you want to assign the person to
+          connect: {
+            id: 2, // Assuming the ID of the team you want to assign the person to is 2
+          },
+        },
+      },
+      select: {
+        user: true,
+        role: true,
+        locationX: true,
+        locationY: true,
+        team: true,
+      },
+    });
+
+    res.json(person);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Error assigned to team." });
   }
 };

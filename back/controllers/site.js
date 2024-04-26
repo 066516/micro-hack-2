@@ -1,27 +1,28 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-exports.createProject = async (req, res) => {
+exports.createSite = async (req, res) => {
   try {
-    const userId = req.user.userId;
-    const { name, description } = req.body;
-    const project = await prisma.project.create({
-      data: { name, description, userId },
+    const { name, address, coordinatesX, coordinatesY } = req.body;
+    const site = await prisma.site.create({
+      data: { name, address, coordinatesX, coordinatesY },
     });
 
-    res.status(201).json(project);
+    res.status(201).json(site);
   } catch (error) {
-    console.error("Error creating project:", error);
-    res.status(500).json({ message: "Error creating project." });
+    console.error("Error creating site:", error);
+    res.status(500).json({ message: "Error creating site." });
   }
 };
-exports.getAllProjcts = async (req, res) => {
+exports.getAllSites = async (req, res) => {
   try {
-    const projects = await prisma.project.findMany({});
+    const sites = await prisma.site.findMany({
+      select: { address: true, name: true, projects: true },
+    });
 
-    res.status(201).json(projects);
+    res.status(201).json(sites);
   } catch (error) {
-    console.error("Error fetching project:", error);
-    res.status(500).json({ message: "Error fetching project." });
+    console.error("Error fetching site:", error);
+    res.status(500).json({ message: "Error fetching site." });
   }
 };
