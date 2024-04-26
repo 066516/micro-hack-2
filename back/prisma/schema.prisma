@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  name     String?
+  Person   Person[]
+}
+
+model Project {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  startDate   DateTime?
+  endDate     DateTime?
+  status      String? // (e.g., "Active", "On Hold", "Completed")
+  sites       Site[] // Projects can have multiple sites
+  teams       Team[] // Projects can have multiple teams
+  tasks       Task[] // Projects can have multiple tasks
+}
+
+model Site {
+  id           Int       @id @default(autoincrement())
+  name         String
+  address      String?
+  coordinatesX Float? // Optional for geospatial data
+  coordinatesY Float? // Optional for geospatial data
+  projects     Project[] // Sites can belong to multiple projects
+  Task         Task[]
+}
+
+model Team {
+  id        Int       @id @default(autoincrement())
+  name      String
+  expertise String
+  projects  Project[] // Teams can belong to multiple projects
+  members   Person[] // Teams can have multiple members
+}
+
+model Person {
+  id Int @id @default(autoincrement())
+  name   String
+  role   String
+  team   Team?  @relation(fields: [teamId], references: [id]) // Person can belong to one team
+  teamId Int?
+  user   User?  @relation(fields: [userId], references: [id])
+  userId Int?
+  Task   Task[]
+}
+
+model Task {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  dueDate     DateTime?
+  assignedTo  Person?   @relation(fields: [personId], references: [id]) // Task can be assigned to one person
+  project     Project   @relation(fields: [projectId], references: [id]) // Task belongs to one project
+  site        Site?     @relation(fields: [siteId], references: [id]) // Task can be associated with one site
+  personId    Int?
+  projectId   Int
+  siteId      Int?
+}
