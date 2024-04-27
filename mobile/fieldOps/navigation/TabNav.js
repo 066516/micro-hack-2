@@ -8,6 +8,7 @@ import VoiceScreen from "../screens/VoiceScreen";
 import MapScreen from "../screens/MapScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import TaskMap from "../components/TaskMap";
+import TaskMapNav from "./TaskMapNav";
 
 const Tab = createBottomTabNavigator();
 

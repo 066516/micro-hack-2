@@ -5,9 +5,8 @@ import { useFonts } from "expo-font";
 import Fonts from "../themes/fonts";
 import Decline from "../icons/Decline";
 import Accept from "../icons/Accept";
-import { useNavigation } from "@react-navigation/native";
 
-export default function TaskCard({ taskprops }) {
+export default function TaskCard({ taskprops, onPress }) {
   const [fontsLoaded] = useFonts(Fonts);
   const task = taskprops;
   /* const task = {
@@ -23,13 +22,9 @@ export default function TaskCard({ taskprops }) {
   if (!fontsLoaded) {
     return null; // Or any loading indicator
   }
-  const navigation = useNavigation(); // Initialize useNavigation hook
 
   return (
-    <Pressable
-      style={styles.container}
-      onPress={() => navigation.navigate("TaskMap")}
-    >
+    <Pressable onPress={onPress} style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{task.title}</Text>
         <Text

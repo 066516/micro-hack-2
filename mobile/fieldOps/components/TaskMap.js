@@ -3,7 +3,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { StyleSheet, View, Button } from "react-native";
 import * as Location from "expo-location";
 
-export default function TaskMap({navigation}) {
+export default function TaskMap({ navigation }) {
   const [userLocation, setUserLocation] = useState(null); // State to store user's current location
   const [markers, setMarkers] = useState([]); // State to store array of markers
 
@@ -34,8 +34,6 @@ export default function TaskMap({navigation}) {
     let location = await Location.getCurrentPositionAsync({});
     setUserLocation(location.coords); // Update userLocation state with current location coordinates
   };
-
-
 
   return (
     <View style={styles.container}>
@@ -84,6 +82,7 @@ export default function TaskMap({navigation}) {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
+    zIndex: 2,
   },
   map: {
     // flex: 1,

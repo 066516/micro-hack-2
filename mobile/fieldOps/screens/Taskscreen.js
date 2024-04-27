@@ -183,8 +183,10 @@ export default function TasksScreen({ navigation }) {
             <TaskItem
               taskprops={item}
               isFirst={index == 0}
-              navigation={navigation}
-            />
+              onPress={() => {
+                navigation.navigate("Tasks map screen");
+              }}
+            ></TaskItem>
           ))}
         </View>
       </ScrollView>
