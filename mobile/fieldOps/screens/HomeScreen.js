@@ -1,10 +1,9 @@
+import React, { useState } from "react";
 import { View, Text } from "react-native";
 import axios from "axios";
-import Listen from "../components/Listen";
 
 export default function HomeScreen() {
   // Import Axios library
-
   // URL to fetch data from
   const apiUrl = "http://192.168.137.1:3000/api/v1/users";
 
@@ -23,7 +22,6 @@ export default function HomeScreen() {
   return (
     <View>
       <Text>home</Text>
-      {/* <Listen /> */}
     </View>
   );
 }

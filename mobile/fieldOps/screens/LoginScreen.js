@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Pressable,
   View,
@@ -6,12 +6,14 @@ import {
   StyleSheet,
   Image,
   TextInput,
+  Keyboard,
 } from "react-native";
 import colors from "../themes/colors";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [keyboardShow, setKeyboardShow] = React.useState();
 
   const onChangeEmail = (email) => {
     setEmail(email);
@@ -20,12 +22,31 @@ export default function LoginScreen({ navigation }) {
     setPassword(password);
   };
 
+  React.useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardShow(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardShow(false);
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
   return (
     <View style={style.screenContainer}>
       <Text style={style.heading}>Account configuration</Text>
-      <Image source={require("../assets/bro.png")} />
+      {!keyboardShow && <Image source={require("../assets/bro.png")} />}
       <View style={style.inputContainer}>
-        <Text style={style.inputLabel}>E-mail:</Text>
+        <Text style={style.inputLabel}>E-mail</Text>
         <LoginInput
           value={email}
           onChangeText={onChangeEmail}
@@ -33,7 +54,7 @@ export default function LoginScreen({ navigation }) {
         />
       </View>
       <View style={style.inputContainer}>
-        <Text style={style.inputLabel}>Password:</Text>
+        <Text style={style.inputLabel}>Password</Text>
         <LoginInput
           value={password}
           onChangeText={onChangePassword}
@@ -51,34 +72,12 @@ export default function LoginScreen({ navigation }) {
       >
         <Text style={style.buttonText}>Log in</Text>
       </Pressable>
-      <View>
-      <Text
-        style={{ fontFamily: "GothamLight", textAlign: "center", fontSize: 10 }}
-      >
-        Any problem?
-      </Text>
-      <View style={{ display: "flex", flexDirection: "row" }}>
-        <Text
-          style={{
-            fontFamily: "GothamLight",
-            textAlign: "center",
-            fontSize: 10,
-          }}
-        >
-          contact us:
-        </Text>
-        <Text
-          style={{
-            fontFamily: "GothamLight",
-            textAlign: "center",
-            fontSize: 10,
-            color: colors.primary[500],
-          }}
-        >
-          {" "}
-          ourEmail@email.com
-        </Text>
-      </View>
+      <View style={style.contactContainer}>
+        <Text style={style.problemText}>Any problem?</Text>
+        <View style={style.contactInfoContainer}>
+          <Text style={style.contactLabel}>contact us:</Text>
+          <Text style={style.contactEmail}>ourEmail@email.com</Text>
+        </View>
       </View>
     </View>
   );
@@ -91,51 +90,45 @@ const LoginInput = ({ value, onChangeText, placeholder, secureTextEntry }) => (
     placeholder={placeholder}
     secureTextEntry={secureTextEntry}
     cursorColor="black"
-    placeholderTextColor="black"
+    placeholderTextColor="#999999"
     style={style.input}
   />
 );
 
 const style = StyleSheet.create({
   screenContainer: {
-    display: "flex",
+    flex: 1,
     justifyContent: "space-around",
-    alignContent: "center",
     alignItems: "center",
     backgroundColor: colors.background,
-    height: "100%",
     paddingVertical: 20,
   },
   heading: {
     fontFamily: "GilroyBold",
-    textAlign: "center",
     fontSize: 28,
+    textAlign: "center",
   },
   inputContainer: {
     width: "80%",
-    display: "flex",
     flexDirection: "column",
-    gap: 10,
+    marginTop: 10,
   },
   inputLabel: {
     fontFamily: "GothamMedium",
-    textAlign: "left",
     fontSize: 16,
   },
   input: {
+    fontFamily: "GothamLight",
+    color: "#999999",
     backgroundColor: "#FFFFFF",
-    borderStyle: "solid",
     padding: 10,
     borderWidth: 1,
     borderRadius: 10,
     height: 40,
     borderColor: "#999999",
-    fontFamily: "GothamLight",
-    color: "#999999",
   },
   helpText: {
     fontFamily: "GothamLight",
-    textAlign: "left",
     fontSize: 13,
     color: "#999999",
     marginHorizontal: 30,
@@ -144,14 +137,34 @@ const style = StyleSheet.create({
     backgroundColor: colors.secondary[500],
     width: 150,
     padding: 15,
-    borderBottomRightRadius: 15,
-    borderBottomLeftRadius: 15,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
+    borderRadius: 15,
   },
   buttonText: {
     fontFamily: "GothamMedium",
-    textAlign: "center",
     fontSize: 16,
+    textAlign: "center",
+  },
+  problemText: {
+    fontFamily: "GothamLight",
+    fontSize: 10,
+  },
+  contactContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 10,
+  },
+  contactInfoContainer: {
+    flexDirection: "row",
+    marginLeft: 5,
+  },
+  contactLabel: {
+    fontFamily: "GothamLight",
+    fontSize: 10,
+  },
+  contactEmail: {
+    fontFamily: "GothamLight",
+    fontSize: 10,
+    color: colors.primary[500],
   },
 });
