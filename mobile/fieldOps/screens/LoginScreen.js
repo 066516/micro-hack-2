@@ -41,6 +41,9 @@ export default function LoginScreen({ navigation }) {
       keyboardDidShowListener.remove();
     };
   }, []);
+  const login = () => {
+    navigation.navigate("Start screen");
+  };
   return (
     <View style={style.screenContainer}>
       <Text style={style.heading}>Account configuration</Text>
@@ -66,10 +69,7 @@ export default function LoginScreen({ navigation }) {
         If you don’t have a password, address to the HR of your company to get
         your personal password.
       </Text>
-      <Pressable
-        onPress={() => navigation.navigate("Start screen")}
-        style={style.button}
-      >
+      <Pressable onPress={login} style={style.button}>
         <Text style={style.buttonText}>Log in</Text>
       </Pressable>
       <View style={style.contactContainer}>

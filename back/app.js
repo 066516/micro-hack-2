@@ -41,7 +41,6 @@ const io = new socketIo.Server(server, {
 var x = 0;
 io.on("connection", (socket) => {
   console.log("Client connected");
-
   socket.on("audioStream", (audioData) => {
     // Broadcast the received audio data to other clients
     console.log(audioData + x++);

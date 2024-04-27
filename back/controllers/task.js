@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 exports.createTask = async (req, res) => {
   try {
-    const { name, description, type, dueDate, projectId } = req.body;
+    const { name, description, type, dueDate, projectId, siteId } = req.body;
     const task = await prisma.task.create({
       data: {
         name,
@@ -11,6 +11,7 @@ exports.createTask = async (req, res) => {
         type,
         dueDate,
         project: { connect: { id: projectId } },
+        site: { connect: { id: siteId } },
       },
     });
 
@@ -29,6 +30,11 @@ exports.getAllTasks = async (req, res) => {
         name: true,
         project: true,
         subTask: true,
+        // duration: true,
+        dueDate: true,
+        duration: true,
+        site: true,
+        status: true,
       },
     });
 

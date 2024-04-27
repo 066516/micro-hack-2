@@ -1,9 +1,20 @@
 import React, { useState } from "react";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import colors from "../themes/colors";
 
 export default function ProgressBar({ percentage }) {
   const fullWidth = 300;
+  const filledWidth = ((fullWidth * percentage) / 100) - 2;
+  const [fillColor, setFillColor] = useState("white");
+  const [text, setText] = useState("");
+  function colorPicker(value) {
+    if (value > 0 && value < 40) {
+      return "#414141";
+    } else if (value >= 40 && value < 60) {
+      return colors.primary[700];
+    } else if (value >= 60 && value <= 100) {
+      return colors.tertiary[500];
   const filledWidth = ((fullWidth * percentage) / 100) - 2;
   const [fillColor, setFillColor] = useState("white");
   const [text, setText] = useState("");
@@ -39,11 +50,14 @@ export default function ProgressBar({ percentage }) {
   return (
     <View style={{display:"flex"}}>
       <Label text={text} />
+    <View style={{display:"flex"}}>
+      <Label text={text} />
       <View
         style={{
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
+          marginVertical: 10,
           marginVertical: 10,
         }}
       >
@@ -54,7 +68,11 @@ export default function ProgressBar({ percentage }) {
             height: 10,
             backgroundColor: "white",
             borderColor: "black",
+            borderColor: "black",
             borderWidth: 1,
+            alignContent: "center",
+            justifyContent: "center",
+            marginRight: 20,
             alignContent: "center",
             justifyContent: "center",
             marginRight: 20,
@@ -63,12 +81,14 @@ export default function ProgressBar({ percentage }) {
           <View
             style={{
               height: 9,
+              height: 9,
               borderRadius: 8,
               width: filledWidth,
               backgroundColor: fillColor,
             }}
           ></View>
         </View>
+        <Text style={{ marginRight: 20 }}>{percentage + "%"}</Text>
         <Text style={{ marginRight: 20 }}>{percentage + "%"}</Text>
       </View>
     </View>
@@ -77,6 +97,10 @@ export default function ProgressBar({ percentage }) {
 
 function Label({ text }) {
   return (
+    <View style={{ display: "flex", flexDirection: "row" }}>
+      <Text style={{ color: "#262626", fontFamily: "GilroyMedium", fontSize:18 }}>
+        {text}
+      </Text>
     <View style={{ display: "flex", flexDirection: "row" }}>
       <Text style={{ color: "#262626", fontFamily: "GilroyMedium", fontSize:18 }}>
         {text}
