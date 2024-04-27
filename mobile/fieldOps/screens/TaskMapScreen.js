@@ -40,7 +40,13 @@ export default function TaskMapScreen() {
           </View>
         </View>
         <View style={styles.pup}>
-          <View style={{ display: "flex", flexDirection: "row" }}>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
             <Text style={{ color: "black", fontWeight: "600" }}>
               Description
             </Text>
