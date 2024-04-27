@@ -20,7 +20,6 @@ export default function StartNav() {
       <FirstStack.Screen name="Login screen" component={LoginScreen} />
       <FirstStack.Screen name="Tab screen" component={TabNav} />
       <FirstStack.Screen name="Start screen" component={StartScreen} />
-      <FirstStack.Screen name="TaskMap" component={TaskMap} />
     </FirstStack.Navigator>
   );
 }

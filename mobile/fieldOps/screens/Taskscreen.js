@@ -17,6 +17,7 @@ import TaskCircle from "../icons/Circle";
 import TaskCard from "../components/TaskCard";
 import TaskLine from "../components/TaskLine";
 import TaskItem from "../components/TaskItem";
+import ProgressBar from "../components/ProgressBar";
 
 export default function TasksScreen({ navigation }) {
   const taskprops = [
@@ -157,6 +158,7 @@ export default function TasksScreen({ navigation }) {
       <ScrollView
         contentContainerStyle={{ alignItems: "center", marginHorizontal: 10 }}
       >
+        <ProgressBar percentage={80}></ProgressBar>
         <Text style={styles.todayText}>Today's tasks</Text>
         <Carousel
           firstItem={9}
@@ -174,7 +176,7 @@ export default function TasksScreen({ navigation }) {
           style={{
             display: "flex",
             flexDirection: "column",
-            marginVertical: 10,
+            marginTop: 25,
           }}
         >
           {dayTasks[selected].map((item, index) => (

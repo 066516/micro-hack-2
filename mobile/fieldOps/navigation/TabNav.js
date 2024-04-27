@@ -20,7 +20,7 @@ export default function TabNav() {
     >
       <Tab.Screen
         name="Tasks"
-        component={Taskscreen}
+        component={TaskMapNav}
         options={{ title: "Tasks" }}
       />
       <Tab.Screen
