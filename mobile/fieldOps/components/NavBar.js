@@ -6,6 +6,7 @@ import Tasks from "../icons/Tasks";
 import Voice from "../icons/Voice";
 import Map from "../icons/Map";
 import Profile from "../icons/Profile";
+import colors from "../themes/colors";
 
 export default function NavBar({ state, descriptors, navigation }) {
   return (
@@ -58,9 +59,9 @@ export default function NavBar({ state, descriptors, navigation }) {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <Icon name={label} color={isFocused ? "black" : "white"}></Icon>
+              <Icon name={label} color={isFocused ? colors.primary[500] : colors.tertiary[300]}></Icon>
             </Svg>
-            <Text>{label}</Text>
+            <Text style={{fontFamily: "GilroyRegular"}}>{label}</Text>
           </Pressable>
         );
       })}

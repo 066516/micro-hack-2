@@ -21,83 +21,25 @@ import ProgressBar from "../components/ProgressBar";
 import fetchData from "../integrations/integartion";
 
 export default function TasksScreen({ navigation }) {
+  const [data, setData] = useState([]);
   useEffect(() => {
     const getData = async () => {
       try {
-        response = await fetchData.getData("task");
-        console.log(response);
+        const response = await fetchData.getData("task");
+        // console.log(response);
+        setData(response);
       } catch (error) {
         console.log(error);
       }
     };
-    getData();
-  });
-  const taskprops = [
-    //a table of what could task properties be like
-    {
-      title: "Guests Orientation",
-      status: "Pending",
-      taskType: "Task’s Type",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam ...",
-      location: "Bab Ezzouar, Algiers",
-      timeLimit: "Only 2h for this task, you’ve to approve it before 9:00",
-    },
-    {
-      title: "Project Presentation",
-      status: "Progress",
-      taskType: "Presentation",
-      description:
-        "Present the project updates to the stakeholders. Prepare slides and data analysis.",
-      location: "Conference Room",
-      timeLimit: "45 minutes",
-    },
-    {
-      title: "Team Meeting",
-      status: "Done",
-      taskType: "Meeting",
-      description:
-        "Discuss the current progress of the project and assign tasks for the next sprint.",
-      location: "Virtual (Zoom)",
-      timeLimit: "1 hour",
-    },
-    {
-      title: "Report Submission",
-      status: "Pending",
-      taskType: "Report",
-      description:
-        "Submit the weekly progress report to the project manager before the deadline.",
-      location: "Email",
-      timeLimit: "Due by Friday, 5:00 PM",
-    },
-  ];
 
-  const dayTasks = [
-    //a table with the order of the days (exp: DayTasks[0] contains the tasks of the very first day in the agenda carousel)
-    taskprops,
-    [
-      ...taskprops,
-      {
-        title: "Guests Orientation",
-        status: "Pending",
-        taskType: "Task’s Type",
-        description:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam ...",
-        location: "Bab Ezzouar, Algiers",
-        timeLimit: "Only 2h for this task, you’ve to approve it before 9:00",
-      },
-    ],
-    taskprops,
-    taskprops,
-    taskprops,
-    taskprops,
-    taskprops,
-    taskprops,
-    taskprops,
-    taskprops,
-    taskprops,
-    taskprops,
-  ];
+    getData();
+  }, []);
+
+  console.log(data);
+
+  const percentage = 80; //percentage of task progress, will be fetched
+
   const name = "Mr. Daniel";
   const department = "Logistics";
   const team = "team";
@@ -111,6 +53,7 @@ export default function TasksScreen({ navigation }) {
   }, []);
 
   function getPreviousNextDays() {
+    //getting the previous and next 10 days for the agenda carousel
     const days = [];
     const millisecondsInADay = 86400000;
     const todayTimestamp = currentDate.getTime();
@@ -170,7 +113,7 @@ export default function TasksScreen({ navigation }) {
       <ScrollView
         contentContainerStyle={{ alignItems: "center", marginHorizontal: 10 }}
       >
-        <ProgressBar percentage={80}></ProgressBar>
+        <ProgressBar percentage={percentage}></ProgressBar>
         <Text style={styles.todayText}>Today's tasks</Text>
         <Carousel
           firstItem={9}
@@ -191,12 +134,13 @@ export default function TasksScreen({ navigation }) {
             marginTop: 25,
           }}
         >
-          {dayTasks[selected].map((item, index) => (
+          {data?.map((item, index) => (
             <TaskItem
+              key={index}
               taskprops={item}
               isFirst={index == 0}
               onPress={() => {
-                navigation.navigate("Tasks map screen");
+                navigation.navigate("Tasks map screen", item);
               }}
             ></TaskItem>
           ))}
@@ -211,8 +155,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 25,
-    paddingTop: 140,
+    paddingTop: 150,
     backgroundColor: colors.background,
   },
   itemContainer: {

@@ -1,53 +1,75 @@
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import colors from "../themes/colors";
 
 export default function ProgressBar({ percentage }) {
-  var fillolor = "white";
-  var borderColor = "black";
   const fullWidth = 300;
-  const filledWidth = (fullWidth * percentage) / 100 - 2;
-  const fillColor = (value) => {
-    switch(value){
-        case value>=0 && value<40: return "#414141"
-        case value >=40 && value <60 : return colors.primary[700]
-        case value >=60 && value <=100: return colors.tertiary[500]
+  const filledWidth = ((fullWidth * percentage) / 100) - 2;
+  const [fillColor, setFillColor] = useState("white");
+  const [text, setText] = useState("");
+  function colorPicker(value) {
+    if (value > 0 && value < 40) {
+      return "#414141";
+    } else if (value >= 40 && value < 60) {
+      return colors.primary[700];
+    } else if (value >= 60 && value <= 100) {
+      return colors.tertiary[500];
     }
-  };
+  }
+
+  function labelPicker(value) {
+    if (value > 0 && value < 20) {
+      return "You just started today’s tasks !";
+    } else if (value >= 20 && value < 40) {
+      return "Good progress, keep going !";
+    } else if (value >= 40 && value <= 60) {
+      return "Your today’s tasks are half done !";
+    } else if (value >= 60 && value < 100) {
+      return "Your today’s tasks are almost done !";
+    } else if (value == 100) {
+      return "Your today’s tasks are all done !";
+    }
+  }
+
+  React.useEffect(() => {
+    setFillColor(colorPicker(percentage));
+    setText(labelPicker(percentage));
+  }, [percentage]);
+
   return (
-    <View>
-      <Label />
+    <View style={{display:"flex"}}>
+      <Label text={text} />
       <View
         style={{
-          display: "flex",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: 10,
+          marginVertical: 10,
         }}
       >
         <View
           style={{
             width: 300,
-            alignSelf: "center",
             borderRadius: 8,
             height: 10,
             backgroundColor: "white",
-            borderColor: borderColor,
+            borderColor: "black",
             borderWidth: 1,
+            alignContent: "center",
+            justifyContent: "center",
+            marginRight: 20,
           }}
         >
           <View
             style={{
-              flex: 1,
-              alignSelf: "flex-start",
-              height: 10,
+              height: 9,
               borderRadius: 8,
               width: filledWidth,
               backgroundColor: fillColor,
             }}
           ></View>
         </View>
-        <Text>{percentage + "%"}</Text>
+        <Text style={{ marginRight: 20 }}>{percentage + "%"}</Text>
       </View>
     </View>
   );
@@ -55,8 +77,10 @@ export default function ProgressBar({ percentage }) {
 
 function Label({ text }) {
   return (
-    <View>
-      <Text>{text}</Text>
+    <View style={{ display: "flex", flexDirection: "row" }}>
+      <Text style={{ color: "#262626", fontFamily: "GilroyMedium", fontSize:18 }}>
+        {text}
+      </Text>
     </View>
   );
 }

@@ -2,7 +2,6 @@ import { View } from "react-native";
 import colors from "../themes/colors";
 
 export default function TaskLine({ isFirst }) {
-  console.log(isFirst)
   return (
     <View
       style={{

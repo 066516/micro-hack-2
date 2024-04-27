@@ -3,10 +3,10 @@ import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { StyleSheet, View, Button } from "react-native";
 import * as Location from "expo-location";
 
-export default function TaskMap({ navigation }) {
+export default function TaskMap({ navigation, route }) {
   const [userLocation, setUserLocation] = useState(null); // State to store user's current location
   const [markers, setMarkers] = useState([]); // State to store array of markers
-
+console.log("nav: "+route.props)
   useEffect(() => {
     // Fetch user's current location when component mounts
     getLocation();

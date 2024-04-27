@@ -25,14 +25,14 @@ export default function TabNav() {
         options={{ title: "Tasks" }}
       />
       <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{ title: "Profile" }}
-      />
-      <Tab.Screen
         name="Voice"
         component={VoiceScreen}
         options={{ title: "Voice" }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ title: "Profile" }}
       />
 
       <Tab.Screen name="Map" component={MapScreen} options={{ title: "Map" }} />

@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiUrl = "http://192.168.0.146:3000/api/v1";
+const apiUrl = "http://192.168.56.1:3000/api/v1";
 const yourAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcxNDExMDkxOH0.WjN4WiETkdOvlt65S33b8B_rlrtukOzdsh7yX6qcmPw";
 const fetchData = {

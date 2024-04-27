@@ -53,7 +53,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const IP_ADDRESS = "192.168.137.1";
+const IP_ADDRESS = "192.168.56.1";
 server.listen(port, IP_ADDRESS, () => {
   console.log(`Server listening on port ${port}`);
 });

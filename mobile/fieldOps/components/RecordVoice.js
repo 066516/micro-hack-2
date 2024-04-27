@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Button } from "react-native";
+import { View, Button, Image, Pressable } from "react-native";
 import { Audio } from "expo-av";
 import io from "socket.io-client";
 
@@ -55,12 +55,14 @@ export default function Record() {
   }
 
   return (
-    <View>
-      <Button
+    <View style={{height:"100%"}}>
+      <Pressable
         title={recording ? "Stop Recording" : "Start Recording"}
         onPress={recording ? stopRecording : startRecording}
         disabled={permissionResponse && permissionResponse.status !== "granted"}
-      />
+      >
+        <Image style={{alignSelf: "center"}}source={require("../assets/ic_round-mic.png")}></Image>
+      </Pressable>
     </View>
   );
 }

@@ -26,7 +26,7 @@ export default function TaskCard({ taskprops, onPress }) {
   return (
     <Pressable onPress={onPress} style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>{task.title}</Text>
+        <Text style={styles.title}>{task.name}</Text>
         <Text
           style={{
             ...styles.status,
@@ -41,7 +41,7 @@ export default function TaskCard({ taskprops, onPress }) {
           {task.status}
         </Text>
       </View>
-      <Text style={styles.type}>{task.taskType}</Text>
+      <Text style={styles.type}>{task.type}</Text>
       <Text style={styles.desc}>{task.description}</Text>
       <View style={styles.locationContainer}>
         <View style={styles.locationIconContainer}>
