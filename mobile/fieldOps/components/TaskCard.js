@@ -6,10 +6,10 @@ import Fonts from "../themes/fonts";
 import Decline from "../icons/Decline";
 import Accept from "../icons/Accept";
 
-export default function TaskCard({taskprops}) {
+export default function TaskCard({ taskprops, onPress }) {
   const [fontsLoaded] = useFonts(Fonts);
-const task=taskprops
- /* const task = {
+  const task = taskprops;
+  /* const task = {
     title: "Guests Orientation",
     status: "Pending",
     taskType: "Task’s Type",
@@ -24,10 +24,22 @@ const task=taskprops
   }
 
   return (
-    <Pressable style={styles.container}>
+    <Pressable onPress={onPress} style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{task.title}</Text>
-        <Text style={{...styles.status, color: task.status=="Done"? colors.tertiary[500]: task.status=="Cancelled"? "CD2929":"black"}}>{task.status}</Text>
+        <Text
+          style={{
+            ...styles.status,
+            color:
+              task.status == "Done"
+                ? colors.tertiary[500]
+                : task.status == "Cancelled"
+                ? "CD2929"
+                : "black",
+          }}
+        >
+          {task.status}
+        </Text>
       </View>
       <Text style={styles.type}>{task.taskType}</Text>
       <Text style={styles.desc}>{task.description}</Text>
@@ -58,7 +70,7 @@ const styles = StyleSheet.create({
     padding: 16,
     margin: 16,
     height: 200,
-    width:265,
+    width: 265,
     flexDirection: "column",
     justifyContent: "space-between",
   },

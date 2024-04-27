@@ -5,6 +5,8 @@ import TabNav from "./TabNav";
 import { View } from "react-native";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import StartScreen from "../screens/StartScreen";
+import TaskMapScreen from "../screens/TaskMapScreen";
+
 const FirstStack = createNativeStackNavigator();
 
 export default function StartNav() {

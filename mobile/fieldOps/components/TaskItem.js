@@ -2,8 +2,9 @@ import { View, Text } from "react-native";
 import TaskLine from "./TaskLine";
 import TaskCard from "./TaskCard";
 
-export default function TaskItem({ isFirst, taskprops }) {
+export default function TaskItem({ isFirst, taskprops, onPress }) {
     const task = taskprops;
+
     return (
       <View
         style={{
@@ -35,7 +36,7 @@ export default function TaskItem({ isFirst, taskprops }) {
           </Text>
         </View>
         <TaskLine isFirst={isFirst} />
-        <TaskCard taskprops={task} />
+        <TaskCard taskprops={task} onPress={onPress} />
       </View>
     );
   }
