@@ -18,19 +18,14 @@ export default function TabNav() {
       tabBar={(props) => <NavBar {...props} />}
     >
       <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{ title: "Profile" }}
-      />
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ title: "Home" }}
-      />
-      <Tab.Screen
         name="Tasks"
         component={Taskscreen}
         options={{ title: "Tasks" }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ title: "Profile" }}
       />
       <Tab.Screen
         name="Voice"

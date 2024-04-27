@@ -12,16 +12,22 @@ import { useFonts } from "expo-font";
 import Fonts from "../themes/fonts";
 import Location from "../icons/Location";
 import Bag from "../icons/Bag";
+import Circle from "../icons/Circle";
 
 export default function ProfileScreen({ navigation }) {
   const name = "Mr. Daniel";
   const department = "IT";
   const team = "web dev";
   const [fontsLoaded] = useFonts(Fonts);
-  const location = "Beb Ezzouar, Algerie";
+  const location = "Beb Ezzouar, Alger";
   const tasksNumber = 2344;
 
-  const buttons = ["My profile", "Statistics", "Location", "Log out"];
+  const buttons = [
+    { name: "My profile", route: "Profile screen" },
+    { name: "Statistics", route: "Statistics screen" },
+    { name: "Location", route: "Location screen" },
+    { name: "Log out", route: "Log out" }
+];
 
   if (!fontsLoaded) {
     return <ActivityIndicator />;
@@ -49,14 +55,14 @@ export default function ProfileScreen({ navigation }) {
             <Text style={styles.detailText}>{location}</Text>
           </View>
           <View style={styles.detailSeparator} />
-          <View style={styles.detailItem}>
+          <View style={{...styles.detailItem, marginLeft: 10}}>
             <Bag />
-            <Text style={styles.detailText}>{tasksNumber} tasks completed</Text>
+            <Text style={{...styles.detailText, textAlign: "right"}}>{tasksNumber} tasks completed</Text>
           </View>
         </View>
         <View style={styles.buttonsContainer}>
           {buttons.map((item, index) => (
-            <Button key={index} label={item} navigation={navigation} />
+            <Button key={index} label={item.name} navigation={navigation} route={item.route}/>
           ))}
         </View>
       </View>
@@ -124,22 +130,24 @@ const styles = StyleSheet.create({
   },
   bullet: {
     textAlign: "center",
-    fontSize: 25,
+    fontSize: 15,
     color: colors.tertiary[300],
   },
   detailsContainer: {
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
     height: 40,
     padding: 10,
     borderRadius: 12,
     width: "100%",
+    marginVertical: 10
   },
   detailItem: {
     flexDirection: "row",
     alignItems: "center",
     gap: 10,
+    width: 150,
   },
   detailSeparator: {
     width: 4,
@@ -150,7 +158,7 @@ const styles = StyleSheet.create({
   detailText: {
     fontFamily: "GilroyLight",
     fontSize: 10,
-    textAlign: "left",
+    textAlign: "center",
   },
   buttonsContainer: {
     flexDirection: "column",
@@ -159,6 +167,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     padding: 20,
     width: "100%",
+    borderRadius: 24
   },
   button: {
     flexDirection: "row",
