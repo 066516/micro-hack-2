@@ -41,7 +41,6 @@ const io = new socketIo.Server(server, {
 var x = 0;
 io.on("connection", (socket) => {
   console.log("Client connected");
-
   socket.on("audioStream", (audioData) => {
     // Broadcast the received audio data to other clients
     console.log(audioData + x++);
@@ -53,7 +52,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const IP_ADDRESS = "192.168.137.1";
-server.listen(port, IP_ADDRESS, () => {
+const IP_ADDRESS = "192.168.0.146";
+server.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
