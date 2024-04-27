@@ -18,8 +18,20 @@ import TaskCard from "../components/TaskCard";
 import TaskLine from "../components/TaskLine";
 import TaskItem from "../components/TaskItem";
 import ProgressBar from "../components/ProgressBar";
+import fetchData from "../integrations/integartion";
 
 export default function TasksScreen({ navigation }) {
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        response = await fetchData.getData("task");
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  });
   const taskprops = [
     //a table of what could task properties be like
     {

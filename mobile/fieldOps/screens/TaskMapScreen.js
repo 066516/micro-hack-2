@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import TaskMap from "../components/TaskMap";
 import colors from "../themes/colors";
 
@@ -51,6 +51,45 @@ export default function TaskMapScreen() {
               Description
             </Text>
             <Text>status </Text>
+          </View>
+          <Text>
+            On iOS, audio playback and recording in background is only available
+            in standalone apps, and it requires some extra configuration. On
+            iOS, each background feature requires a special key in
+          </Text>
+          <View
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              gap: 10,
+              alignItems: "flex-end",
+              justifyContent: "flex-end",
+            }}
+          >
+            <TouchableOpacity>
+              <Text
+                style={{
+                  color: "red",
+                  fontWeight: "600",
+                  textTransform: "uppercase",
+                }}
+              >
+                canceled
+              </Text>
+            </TouchableOpacity>
+            <Text>|</Text>
+            <TouchableOpacity>
+              <Text
+                style={{
+                  color: "green",
+                  fontWeight: "600",
+                  textTransform: "uppercase",
+                }}
+              >
+                done
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
