@@ -1,5 +1,6 @@
 import { View, Text } from "react-native";
 import axios from "axios";
+import Listen from "../components/Listen";
 
 export default function HomeScreen() {
   // Import Axios library
@@ -22,6 +23,7 @@ export default function HomeScreen() {
   return (
     <View>
       <Text>home</Text>
+      {/* <Listen /> */}
     </View>
   );
 }
