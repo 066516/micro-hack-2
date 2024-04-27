@@ -178,7 +178,7 @@ export default function TasksScreen() {
           }}
         >
           {dayTasks[selected].map((item, index) => (
-            <TaskItem taskprops={item} isFirst={index == 0}></TaskItem>
+            <TaskItem taskprops={item} isFirst={index == 0} />
           ))}
         </View>
       </ScrollView>
