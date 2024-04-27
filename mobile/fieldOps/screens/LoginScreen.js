@@ -9,6 +9,7 @@ import {
   Keyboard,
 } from "react-native";
 import colors from "../themes/colors";
+import fetchData from "../integrations/auth";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -41,7 +42,9 @@ export default function LoginScreen({ navigation }) {
       keyboardDidShowListener.remove();
     };
   }, []);
-  const login = () => {
+  const login = async () => {
+    const response = await fetchData.login({ email, password });
+    console.log(response);
     navigation.navigate("Start screen");
   };
   return (

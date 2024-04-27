@@ -8,7 +8,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <PaperProvider>
-        <TabNav></TabNav>
+        <StartNav></StartNav>
       </PaperProvider>
     </NavigationContainer>
   );

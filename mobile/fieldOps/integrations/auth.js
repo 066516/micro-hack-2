@@ -1,13 +1,12 @@
 import axios from "axios";
-import config from "../config";
-import * as SecureStore from "expo-secure-store"; // Use this for Expo
-const apiUrl = "http://localhost:3000/api/v1";
+
+const apiUrl = "http://192.168.0.146:3000/api/v1";
 
 const fetchData = {
   login: async (postData) => {
     console.log(postData);
     try {
-      const response = await axios.post(`${apiUrl}/login`, postData);
+      const response = await axios.post(`${apiUrl}/auth/login`, postData);
       return response.data;
     } catch (error) {
       console.error("Error login:", error);
