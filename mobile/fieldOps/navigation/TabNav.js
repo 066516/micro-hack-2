@@ -7,6 +7,7 @@ import Taskscreen from "../screens/Taskscreen";
 import VoiceScreen from "../screens/VoiceScreen";
 import MapScreen from "../screens/MapScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import TaskMap from "../components/TaskMap";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,6 +33,7 @@ export default function TabNav() {
         component={VoiceScreen}
         options={{ title: "Voice" }}
       />
+
       <Tab.Screen name="Map" component={MapScreen} options={{ title: "Map" }} />
     </Tab.Navigator>
   );

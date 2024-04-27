@@ -18,7 +18,7 @@ import TaskCard from "../components/TaskCard";
 import TaskLine from "../components/TaskLine";
 import TaskItem from "../components/TaskItem";
 
-export default function TasksScreen() {
+export default function TasksScreen({ navigation }) {
   const taskprops = [
     //a table of what could task properties be like
     {
@@ -178,7 +178,11 @@ export default function TasksScreen() {
           }}
         >
           {dayTasks[selected].map((item, index) => (
-            <TaskItem taskprops={item} isFirst={index == 0} />
+            <TaskItem
+              taskprops={item}
+              isFirst={index == 0}
+              navigation={navigation}
+            />
           ))}
         </View>
       </ScrollView>
