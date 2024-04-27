@@ -1,0 +1,132 @@
+{
+    "employee1": {
+        "job": "meca",
+        "location": [
+            20,
+            20
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee2": {
+        "job": "elec",
+        "location": [
+            50,
+            20
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee3": {
+        "job": "tech",
+        "location": [
+            20,
+            30
+        ],
+        "is_available": false,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee4": {
+        "job": "meca",
+        "location": [
+            30,
+            50
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee5": {
+        "job": "tech",
+        "location": [
+            90,
+            10
+        ],
+        "is_available": false,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee6": {
+        "job": "tech",
+        "location": [
+            0,
+            0
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee7": {
+        "job": "meca",
+        "location": [
+            10,
+            90
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee9": {
+        "job": "meca",
+        "location": [
+            40,
+            40
+        ],
+        "is_available": false,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee10": {
+        "job": "meca",
+        "location": [
+            20,
+            10
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee11": {
+        "job": "elec",
+        "location": [
+            0,
+            50
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee12": {
+        "job": "elec",
+        "location": [
+            40,
+            70
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee13": {
+        "job": "tech",
+        "location": [
+            20,
+            20
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    },
+    "employee14": {
+        "job": "meca",
+        "location": [
+            80,
+            90
+        ],
+        "is_available": true,
+        "tasks_associated": [],
+        "worked_hours": 0
+    }
+}
