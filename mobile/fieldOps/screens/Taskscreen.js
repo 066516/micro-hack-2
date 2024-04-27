@@ -158,7 +158,7 @@ export default function TasksScreen({ navigation }) {
       <ScrollView
         contentContainerStyle={{ alignItems: "center", marginHorizontal: 10 }}
       >
-        <ProgressBar percentage={80}></ProgressBar>
+        <ProgressBar percentage={90}></ProgressBar>
         <Text style={styles.todayText}>Today's tasks</Text>
         <Carousel
           firstItem={9}
